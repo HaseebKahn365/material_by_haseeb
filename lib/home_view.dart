@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:material_by_haseeb/widgets_screens/1responsive_icon.dart';
 
 /*This project is going to contain most of the beautiful widgets and components from the flutter Animation app and the flutter plugin app.
 Here is the list of the widgets that we are going to cover in this project.
@@ -35,7 +36,13 @@ class HomeBody extends StatelessWidget {
             //this is the button to launch the responsive icon widget
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/responsive_icon');
+                //push to responsive icon widget without using named routes
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ResponsiveIcons(),
+                  ),
+                );
               },
               child: const Text('Responsive Icon'),
             ),
