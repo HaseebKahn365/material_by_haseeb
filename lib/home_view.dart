@@ -4,6 +4,8 @@ import 'package:material_by_haseeb/widgets_screens/2ripple_animation.dart';
 import 'package:material_by_haseeb/widgets_screens/3progress_button_1.dart';
 import 'package:material_by_haseeb/widgets_screens/4animated_listview.dart';
 import 'package:material_by_haseeb/widgets_screens/5expandable_widget.dart';
+import 'package:material_by_haseeb/widgets_screens/6flip_card.dart';
+import 'package:material_by_haseeb/widgets_screens/7like_button.dart';
 
 /*This project is going to contain most of the beautiful widgets and components from the flutter Animation app and the flutter plugin app.
 Here is the list of the widgets that we are going to cover in this project.
@@ -106,14 +108,26 @@ class HomeBody extends StatelessWidget {
             //this is the button to launch the flib card animation widget
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/flib_card_animation');
+                //withoout using named routes
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => FlipCardWidget(),
+                  ),
+                );
               },
-              child: const Text('Flib Card Animation'),
+              child: const Text('Flip Card Animation'),
             ),
             //this is the button to launch the like button widget
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/like_button');
+                //without using named routes
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => LikeButtonWidget(),
+                  ),
+                );
               },
               child: const Text('Like Button'),
             ),
