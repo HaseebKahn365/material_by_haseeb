@@ -4,13 +4,19 @@ A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project is going to contain most of the beautiful widgets and components from the flutter Animation app and the flutter plugin app.
+Here is the list of the widgets that we are going to cover in this project.
 
-A few resources to get you started if this is your first Flutter project:
+From the flutter animations app:
+Icon Animations : Responsive Icon 
+Loop Animation : Ripple Animation
+Button Animation : Progress Button 1
+Animated List view 3
+Other Animations: Expandable widget
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+from the flutter plugin app:
+Plugins for cards: FlibCard Animation
+Plugins for buttons: Like Button, Spring Button
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+After all this we will implement a custom widget that will use the hover of the mouse to display cool randomizing text with glow of the cursor.

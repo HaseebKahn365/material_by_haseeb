@@ -1,125 +1,170 @@
 import 'package:flutter/material.dart';
+import 'package:material_by_haseeb/home_view.dart';
 
+//I am gonna customize this app to be my portfolio
 void main() {
-  runApp(const MyApp());
+  runApp(const Material3Demo());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class Material3Demo extends StatefulWidget {
+  const Material3Demo({super.key});
 
-  // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a blue toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
+  State<Material3Demo> createState() => _Material3DemoState();
+}
+
+const double narrowScreenWidthThreshold = 450;
+
+const Color m3BaseColor = Color(0xff6750a4);
+const List<Color> colorOptions = [
+  m3BaseColor,
+  Colors.blue,
+  Colors.teal,
+  Colors.green,
+  Colors.yellow,
+  Colors.orange,
+  Colors.pink,
+  Colors.lime
+];
+const List<String> colorText = <String>[
+  "M3 Baseline",
+  "Blue",
+  "Teal",
+  "Green",
+  "Yellow",
+  "Orange",
+  "Pink",
+  "Lime"
+];
+
+class _Material3DemoState extends State<Material3Demo> {
+  bool useMaterial3 = true;
+  bool useLightMode = true;
+  int colorSelected = 0;
+  int screenIndex = 0;
+
+  late ThemeData themeData;
+
+  @override
+  initState() {
+    super.initState();
+    themeData = updateThemes(colorSelected, useMaterial3, useLightMode);
   }
-}
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+  ThemeData updateThemes(int colorIndex, bool useMaterial3, bool useLightMode) {
+    return ThemeData(
+        // make the new Product Sans font the default font
+        fontFamily: 'Product Sans',
+        colorSchemeSeed: colorOptions[colorSelected],
+        useMaterial3: useMaterial3,
+        brightness: useLightMode ? Brightness.light : Brightness.dark);
+  }
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
+  void handleScreenChanged(int selectedScreen) {
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
+      screenIndex = selectedScreen;
     });
   }
 
+  void handleBrightnessChange() {
+    setState(() {
+      useLightMode = !useLightMode;
+      themeData = updateThemes(colorSelected, useMaterial3, useLightMode);
+    });
+  }
+
+  void handleMaterialVersionChange() {
+    setState(() {
+      useMaterial3 = !useMaterial3;
+      themeData = updateThemes(colorSelected, useMaterial3, useLightMode);
+    });
+  }
+
+  void handleColorSelect(int value) {
+    setState(() {
+      colorSelected = value;
+      themeData = updateThemes(colorSelected, useMaterial3, useLightMode);
+    });
+  }
+
+  PreferredSizeWidget createAppBar() {
+    return AppBar(
+      //Make the title appear larger if on desktop(use responsive builder) and also bring it to the center
+      title: LayoutBuilder(builder: (context, constraints) {
+        if (constraints.maxWidth < narrowScreenWidthThreshold) {
+          return const Text("Haseeb's Portfolio");
+        } else {
+          return const Text("Haseeb's  Portfolio",
+              style: TextStyle(fontSize: 35, letterSpacing: 1));
+        }
+      }),
+      //center if on desktop
+      centerTitle:
+          (MediaQuery.of(context).size.width > narrowScreenWidthThreshold)
+              ? true
+              : false,
+
+      actions: [
+        IconButton(
+          icon: useLightMode
+              ? const Icon(Icons.wb_sunny_outlined)
+              : const Icon(Icons.wb_sunny),
+          onPressed: handleBrightnessChange,
+          tooltip: "Light/Dark Mode",
+        ),
+        PopupMenuButton(
+          icon: const Icon(Icons.more_vert),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          itemBuilder: (context) {
+            return List.generate(colorOptions.length, (index) {
+              return PopupMenuItem(
+                  value: index,
+                  child: Wrap(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10),
+                        child: Icon(
+                          index == colorSelected
+                              ? Icons.color_lens
+                              : Icons.color_lens_outlined,
+                          color: colorOptions[index],
+                        ),
+                      ),
+                      Padding(
+                          padding: const EdgeInsets.only(left: 20),
+                          child: Text(colorText[index]))
+                    ],
+                  ));
+            });
+          },
+          onSelected: handleColorSelect,
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+    //I want the boyinspace.jpg to be the background image
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Portfolio',
+      themeMode: useLightMode ? ThemeMode.light : ThemeMode.dark,
+      theme: themeData,
+      home: LayoutBuilder(builder: (context, constraints) {
+        if (constraints.maxWidth < narrowScreenWidthThreshold) {
+          return Scaffold(
+            appBar: createAppBar(),
+            body: HomeBody(),
+          );
+        } else {
+          return Scaffold(
+            appBar: createAppBar(),
+            body: HomeBody(),
+          );
+        }
+      }),
     );
   }
 }
