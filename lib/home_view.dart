@@ -6,6 +6,8 @@ import 'package:material_by_haseeb/widgets_screens/4animated_listview.dart';
 import 'package:material_by_haseeb/widgets_screens/5expandable_widget.dart';
 import 'package:material_by_haseeb/widgets_screens/6flip_card.dart';
 import 'package:material_by_haseeb/widgets_screens/7like_button.dart';
+import 'package:material_by_haseeb/widgets_screens/8spring_button.dart';
+import 'package:material_by_haseeb/widgets_screens/9HoverTextEffect.dart';
 
 /*This project is going to contain most of the beautiful widgets and components from the flutter Animation app and the flutter plugin app.
 Here is the list of the widgets that we are going to cover in this project.
@@ -134,14 +136,26 @@ class HomeBody extends StatelessWidget {
             //this is the button to launch the spring button widget
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/spring_button');
+                //without using named routes
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SpringButtonWidget(),
+                  ),
+                );
               },
               child: const Text('Spring Button'),
             ),
             //this is the button to launch the hover text widget
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/hover_text');
+                //without using named routes
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => HoverTextWidget(),
+                  ),
+                );
               },
               child: const Text('Hover Text'),
             ),

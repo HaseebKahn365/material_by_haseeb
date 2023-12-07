@@ -39,6 +39,7 @@ dependencies:
   flutter_staggered_animations: ^1.1.1
   flip_card: ^0.7.0
   like_button: ^2.0.5
+  spring_button: ^2.0.0
 
 dev_dependencies:
   flutter_test:
