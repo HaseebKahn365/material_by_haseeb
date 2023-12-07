@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:material_by_haseeb/widgets_screens/1responsive_icon.dart';
+import 'package:material_by_haseeb/widgets_screens/2ripple_animation.dart';
+import 'package:material_by_haseeb/widgets_screens/3progress_button_1.dart';
+import 'package:material_by_haseeb/widgets_screens/4animated_listview.dart';
+import 'package:material_by_haseeb/widgets_screens/5expandable_widget.dart';
 
 /*This project is going to contain most of the beautiful widgets and components from the flutter Animation app and the flutter plugin app.
 Here is the list of the widgets that we are going to cover in this project.
@@ -49,28 +53,53 @@ class HomeBody extends StatelessWidget {
             //this is the button to launch the ripple animation widget
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/ripple_animation');
+                //similar to above navigate to the ripple animation widget
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => RippleAnimation(),
+                  ),
+                );
               },
               child: const Text('Ripple Animation'),
             ),
             //this is the button to launch the progress button 1 widget
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/progress_button_1');
+                //without using named routes
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ProgressButton1(),
+                  ),
+                );
               },
               child: const Text('Progress Button 1'),
             ),
+
             //this is the button to launch the animated list view 3 widget
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/animated_list_view_3');
+                //without using named routes
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SlideAnimation3(),
+                  ),
+                );
               },
               child: const Text('Animated List View 3'),
             ),
             //this is the button to launch the expandable widget
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/expandable_widget');
+                //without using named routes
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ExpandableWidget(),
+                  ),
+                );
               },
               child: const Text('Expandable Widget'),
             ),
