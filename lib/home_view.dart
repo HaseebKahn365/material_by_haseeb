@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:material_by_haseeb/widgets_screens/10AnimatedOutlinedElevatedButton.dart';
 import 'package:material_by_haseeb/widgets_screens/1responsive_icon.dart';
 import 'package:material_by_haseeb/widgets_screens/2ripple_animation.dart';
 import 'package:material_by_haseeb/widgets_screens/3progress_button_1.dart';
@@ -25,6 +26,11 @@ Plugins for buttons: Like Button, Spring Button
 
 
 After all this we will implement a custom widget that will use the hover of the mouse to display cool randomizing text with glow of the cursor.
+After all this we will implement a custom widget that will use the hover of the mouse to display cool randomizing text with glow of the cursor.
+Now that we have implemented everything. Now it is time to create a special elevated button "AnimatedOutlinedElevatedButton" with the following  abilities,
+
+When the cursor hovers over the elevated button the size of the button should increase slightly.
+The outline of the button should be animated like a progress indicator from top left corner all the way around the button and back to the top left corner.
  */
 
 class HomeBody extends StatelessWidget {
@@ -158,6 +164,20 @@ class HomeBody extends StatelessWidget {
                 );
               },
               child: const Text('Hover Text'),
+            ),
+
+            //this is the button to launch the animated outlined elevated button widget
+            ElevatedButton(
+              onPressed: () {
+                //without using named routes
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AnimatedOutlinedElevatedButton(),
+                  ),
+                );
+              },
+              child: const Text('Animated Outlined Elevated Button'),
             ),
           ],
         ),

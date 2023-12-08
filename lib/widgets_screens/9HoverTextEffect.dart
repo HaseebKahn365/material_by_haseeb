@@ -45,8 +45,8 @@ class _HoverTextWidgetState extends State<HoverTextWidget> {
                 radius: 0.4,
                 colors: [
                   //make these color according to the theme. (use best options from color scheme)
-                  Theme.of(context).colorScheme.primary,
                   Theme.of(context).colorScheme.secondary,
+                  Theme.of(context).colorScheme.primary,
                   Theme.of(context).colorScheme.primary.withOpacity(0.0),
                 ],
                 stops: [0.0, 0.5, 1.0],
@@ -61,8 +61,16 @@ class _HoverTextWidgetState extends State<HoverTextWidget> {
                     'Abdul\nHaseeb',
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.onSecondary,
-                      fontSize: 300,
+                      fontSize: 100,
                       fontWeight: FontWeight.w900,
+                      //create a dark outline
+                      shadows: [
+                        Shadow(
+                          color: Theme.of(context).colorScheme.secondary,
+                          offset: Offset(5, 5),
+                          blurRadius: 10,
+                        ),
+                      ],
                     ),
                   ),
                 ),

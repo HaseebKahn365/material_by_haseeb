@@ -20,3 +20,7 @@ Plugins for buttons: Like Button, Spring Button
 
 
 After all this we will implement a custom widget that will use the hover of the mouse to display cool randomizing text with glow of the cursor.
+Now that we have implemented everything. Now it is time to create a special elevated button "AnimatedOutlinedElevatedButton" with the following  abilities,
+
+When the cursor hovers over the elevated button the size of the button should increase slightly.
+The outline of the button should be animated like a progress indicator from top left corner all the way around the button and back to the top left corner.
