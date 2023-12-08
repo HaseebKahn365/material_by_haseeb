@@ -80,7 +80,7 @@ class _SpringButtonWidgetState extends State<SpringButtonWidget> {
                 (_) => incrementCounter(),
               ),
               onLongPressEnd: (_) {
-                timer?.cancel();
+                timer.cancel();
               },
             ),
           ),
@@ -98,7 +98,7 @@ class _SpringButtonWidgetState extends State<SpringButtonWidget> {
                 (_) => decrementCounter(),
               ),
               onLongPressEnd: (_) {
-                timer?.cancel();
+                timer.cancel();
               },
             ),
           ),

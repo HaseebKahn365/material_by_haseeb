@@ -1,6 +1,3 @@
-// We are using this plugin => flip_card
-// Search it on google For more information.
-
 import 'package:flutter/material.dart';
 import 'package:flip_card/flip_card.dart';
 
